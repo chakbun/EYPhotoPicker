@@ -57,12 +57,6 @@
         NSLog(@"Selected Image %@", [image description]);
         
     } failure:^(NSError *error) {
-        
-        UIImage *imagePrepared = [UIImage imageNamed:@"iOS.png"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [anImageView setImage:imagePrepared];
-        });
-        
         NSLog(@"failure %@", [error description]);
     }];
 }
