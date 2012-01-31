@@ -8,12 +8,12 @@
 #import "ViewController.h"
 
 @implementation ViewController
-@synthesize anImage;
+@synthesize anImageView;
 
 #pragma mark - View lifecycle
 - (void)viewDidUnload
 {
-    [self setAnImage:nil];
+    [self setAnImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -23,15 +23,54 @@
     selectPhoto = [[EYPhotoPiker alloc] init];
     [selectPhoto showFromView:self completion:^(UIImage *image) {
         
-//        UIButton *button = (UIButton*)sender;
-//        [images setValue:image forKey:[NSString stringWithFormat:@"image1", tag]];
-//        [button setBackgroundImage:image forState:UIControlStateNormal];
+        if (image != nil) {
+            CGImageRef imageRef = [image CGImage];
+            
+            CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(imageRef));
+            CGDataProviderRef imageDataProvider = CGDataProviderCreateWithCFData(imageData);
+            if (imageData != NULL) {
+                CFRelease(imageData);
+            }
+            
+            CGImageRef imageRefPrepared = CGImageCreate(CGImageGetWidth(imageRef),
+                                                        CGImageGetHeight(imageRef),
+                                                        CGImageGetBitsPerComponent(imageRef),
+                                                        CGImageGetBitsPerPixel(imageRef),
+                                                        CGImageGetBytesPerRow(imageRef),
+                                                        CGImageGetColorSpace(imageRef),
+                                                        CGImageGetBitmapInfo(imageRef),
+                                                        imageDataProvider,
+                                                        CGImageGetDecode(imageRef),
+                                                        CGImageGetShouldInterpolate(imageRef),
+                                                        CGImageGetRenderingIntent(imageRef));
+            if (imageDataProvider != NULL) {
+                CGDataProviderRelease(imageDataProvider);
+            }
+            
+            UIImage *imagePrepared = [UIImage imageWithCGImage:imageRefPrepared];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [anImageView setImage:imagePrepared];
+            });
+            CGImageRelease(imageRefPrepared);
+        }
         
         NSLog(@"Selected Image %@", [image description]);
         
     } failure:^(NSError *error) {
-        NSLog(@"failure %@", [error description]);
         
+        UIImage *imagePrepared = [UIImage imageNamed:@"iOS.png"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [anImageView setImage:imagePrepared];
+        });
+        
+        NSLog(@"failure %@", [error description]);
     }];
 }
+
+- (void) setImage:(CGImageRef)imageRef{
+    UIImage *image = [UIImage imageWithCGImage:imageRef];
+    [anImageView setImage:image];
+}
+
+
 @end

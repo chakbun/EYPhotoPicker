@@ -12,9 +12,10 @@
     EYPhotoPiker *selectPhoto;
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *anImage;
+@property (weak, nonatomic) IBOutlet UIImageView *anImageView;
 
 
 - (IBAction)selectImage:(id)sender;
+- (void) setImage:(CGImageRef)imageRef;
 
 @end

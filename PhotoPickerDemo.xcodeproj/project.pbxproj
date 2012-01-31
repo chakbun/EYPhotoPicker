@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE85200C14D88488005AED64 /* iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = BE85200B14D88488005AED64 /* iOS.png */; };
 		BEED737D14D856410066F7DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED737C14D856410066F7DA /* UIKit.framework */; };
 		BEED737F14D856410066F7DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED737E14D856410066F7DA /* Foundation.framework */; };
 		BEED738114D856410066F7DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED738014D856410066F7DA /* CoreGraphics.framework */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE85200B14D88488005AED64 /* iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS.png; sourceTree = "<group>"; };
 		BEED737814D856410066F7DA /* PhotoPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEED737C14D856410066F7DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BEED737E14D856410066F7DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +122,7 @@
 				BEED738E14D856410066F7DA /* ViewController.h */,
 				BEED738F14D856410066F7DA /* ViewController.m */,
 				BEED739114D856410066F7DA /* ViewController.xib */,
+				BE85200B14D88488005AED64 /* iOS.png */,
 				BEED738314D856410066F7DA /* Supporting Files */,
 			);
 			path = PhotoPickerDemo;
@@ -237,6 +240,7 @@
 			files = (
 				BEED738714D856410066F7DA /* InfoPlist.strings in Resources */,
 				BEED739314D856410066F7DA /* ViewController.xib in Resources */,
+				BE85200C14D88488005AED64 /* iOS.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +448,7 @@
 				BEED73AD14D856410066F7DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BEED73AE14D856410066F7DA /* Build configuration list for PBXNativeTarget "PhotoPickerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +457,7 @@
 				BEED73B014D856410066F7DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
