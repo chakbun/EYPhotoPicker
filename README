@@ -1,2 +1,8 @@
 PhotoPicker
 (c) Eugene Yagrushkin 2012
+
+TODO:
+1. Wrap EYPhotoPicker as a singletone or use class methods, solve early release issue
+2. add support for non ARC projects
+3. add unit testing
+4. 
