@@ -5,4 +5,6 @@ TODO:
 1. Wrap EYPhotoPicker as a singletone or use class methods, solve early release issue
 2. add support for non ARC projects
 3. add unit testing
-4. 
+4. localization
+5. add screeshots and format README
+
