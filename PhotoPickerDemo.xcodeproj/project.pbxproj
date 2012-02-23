@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2B15E4414F69EC500F9B4A1 /* EYPhotoPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B15E4314F69EC500F9B4A1 /* EYPhotoPicker.m */; };
 		BEED737D14D856410066F7DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED737C14D856410066F7DA /* UIKit.framework */; };
 		BEED737F14D856410066F7DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED737E14D856410066F7DA /* Foundation.framework */; };
 		BEED738114D856410066F7DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED738014D856410066F7DA /* CoreGraphics.framework */; };
@@ -20,7 +21,6 @@
 		BEED739D14D856410066F7DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED737E14D856410066F7DA /* Foundation.framework */; };
 		BEED73A514D856410066F7DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEED73A314D856410066F7DA /* InfoPlist.strings */; };
 		BEED73A814D856410066F7DA /* PhotoPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED73A714D856410066F7DA /* PhotoPickerDemoTests.m */; };
-		BEED73B414D8564E0066F7DA /* EYPhotoPiker.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED73B314D8564E0066F7DA /* EYPhotoPiker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2B15E4214F69EC500F9B4A1 /* EYPhotoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPhotoPicker.h; sourceTree = "<group>"; };
+		B2B15E4314F69EC500F9B4A1 /* EYPhotoPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYPhotoPicker.m; sourceTree = "<group>"; };
 		BEED737814D856410066F7DA /* PhotoPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEED737C14D856410066F7DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BEED737E14D856410066F7DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,8 +55,6 @@
 		BEED73A414D856410066F7DA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BEED73A614D856410066F7DA /* PhotoPickerDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPickerDemoTests.h; sourceTree = "<group>"; };
 		BEED73A714D856410066F7DA /* PhotoPickerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoPickerDemoTests.m; sourceTree = "<group>"; };
-		BEED73B214D8564E0066F7DA /* EYPhotoPiker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPhotoPiker.h; sourceTree = "<group>"; };
-		BEED73B314D8564E0066F7DA /* EYPhotoPiker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYPhotoPiker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +158,8 @@
 		BEED73B114D8564E0066F7DA /* EYPhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
-				BEED73B214D8564E0066F7DA /* EYPhotoPiker.h */,
-				BEED73B314D8564E0066F7DA /* EYPhotoPiker.m */,
+				B2B15E4214F69EC500F9B4A1 /* EYPhotoPicker.h */,
+				B2B15E4314F69EC500F9B4A1 /* EYPhotoPicker.m */,
 			);
 			path = EYPhotoPicker;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 				BEED738914D856410066F7DA /* main.m in Sources */,
 				BEED738D14D856410066F7DA /* AppDelegate.m in Sources */,
 				BEED739014D856410066F7DA /* ViewController.m in Sources */,
-				BEED73B414D8564E0066F7DA /* EYPhotoPiker.m in Sources */,
+				B2B15E4414F69EC500F9B4A1 /* EYPhotoPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

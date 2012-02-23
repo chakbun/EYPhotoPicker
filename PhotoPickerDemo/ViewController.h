@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EYPhotoPiker.h"
+#import "EYPhotoPicker.h"
 
 @interface ViewController : UIViewController{
-    EYPhotoPiker *selectPhoto;
+    EYPhotoPicker *selectPhoto;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *anImageView;

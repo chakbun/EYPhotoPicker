@@ -20,7 +20,7 @@
 }
 
 - (IBAction)selectImage:(id)sender {
-    selectPhoto = [[EYPhotoPiker alloc] init];
+    selectPhoto = [[EYPhotoPicker alloc] init];
     [selectPhoto showFromView:self completion:^(UIImage *image) {
         
         if (image != nil) {
