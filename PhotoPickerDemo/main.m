@@ -3,7 +3,7 @@
 //  PhotoPickerDemo
 //
 //  Created by Eugene Yagrushkin on 12-01-31.
-//  Copyright (c) 2012 Diversinet Inc. All rights reserved.
+//  Copyright (c) 2012 Eugene Yagrushkin Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -27,50 +27,77 @@
 
 #import "EYPhotoPicker.h"
 
+
+@interface EYPhotoPicker()
+
+- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock withMode:(EYPhotoPickerMode) mode;
+
+@end
+
 @implementation EYPhotoPicker
+static EYPhotoPicker *photoPicker;
 
-#pragma mark - View lifecycle
-
-+ (id) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock{
+#pragma mark - Class singleton methods
++ (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock{
+    @synchronized(self) {
+        if (!photoPicker) {
+            photoPicker = [[EYPhotoPicker alloc] init];
+        }
+    }
     
-    id __block newPicker = [[EYPhotoPicker alloc] init];
-    [newPicker showFromView:aViewController completion:aCompletionBlock];
-    return newPicker;
+    [photoPicker showFromView:aViewController completion:aCompletionBlock failure:nil withMode:EYPhotoPickerModeLocal];
 }
 
-- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock withMode:(EYPhotoPickerMode) aMode{
-    mode = aMode;
-    [self showFromView:aViewController completion:aCompletionBlock failure:nil];
++ (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock{
+    @synchronized(self) {
+        if (!photoPicker) {
+            photoPicker = [[EYPhotoPicker alloc] init];
+        }
+    }
+    
+    [photoPicker showFromView:aViewController completion:aCompletionBlock failure:aFailureBlock withMode:EYPhotoPickerModeLocal];
 }
 
-- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock
-{
-    [self showFromView:aViewController completion:aCompletionBlock failure:nil];
++ (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock withMode:(EYPhotoPickerMode) mode{
+    @synchronized(self) {
+        if (!photoPicker) {
+            photoPicker = [[EYPhotoPicker alloc] init];
+        }
+    }
+    
+    [photoPicker showFromView:aViewController completion:aCompletionBlock failure:aFailureBlock withMode:mode];
 }
 
-- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock 
+#pragma mark - instance methods
+- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock withMode:(EYPhotoPickerMode) aMode
 {
     completionBlock = aCompletionBlock;
     failureBlock = aFailureBlock;
     viewController = aViewController;
+    mode = aMode;
 
-    if (mode == EYPhotoPickerModeBoth) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Load picture:", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Camera", nil), NSLocalizedString(@"Library", nil), nil];
-            [action showInView:aViewController.view];
-        }
-        else
-        {
+    switch (mode) {
+        case EYPhotoPickerModeLocal:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Load picture:", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Camera", nil), NSLocalizedString(@"Library", nil), nil];
+                [action showInView:aViewController.view];
+            }
+            else
+            {
+                [self actionSheet:nil clickedButtonAtIndex:1];
+            }
+            break;
+            
+        case EYPhotoPickerModeImagesOnly:
             [self actionSheet:nil clickedButtonAtIndex:1];
-        }
-    }
-    else{
-        if (mode == EYPhotoPickerModeImagesOnly) {
-            [self actionSheet:nil clickedButtonAtIndex:1];
-        }
-        else{
+            break;
+            
+        case EYPhotoPickerModePhotoOnly:
             [self actionSheet:nil clickedButtonAtIndex:0];
-        }
+            break;
+            
+        default:
+            break;
     }
     
 }
@@ -112,12 +139,14 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    
+    failureBlock(nil);
+    photoPicker = nil;
 }
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
     failureBlock(nil);
+    photoPicker = nil;
 }
 
 #pragma mark - UIImagePickerController delegate
@@ -128,18 +157,21 @@
     if (!image) {
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
-    
+
+        // resize image ? 
 //    UIGraphicsBeginImageContext(size);
 //    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
 //    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();    
 //    UIGraphicsEndImageContext();
 
     completionBlock(image);
+    photoPicker = nil;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissModalViewControllerAnimated:YES];
     failureBlock(nil);
+    photoPicker = nil;
 }
 
 

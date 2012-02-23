@@ -25,16 +25,21 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
+
     // TODO:
+    // 2. NSError
+    // 3. zoom image as a parameter
+    // 4. add social services (Google +, Facebook, flickr, 500p)
+
+    // DONE
     // 1. Singletone: autorelease issue ARC
     // 2. class methods + showFromView
-    // 2. NSError
-    // 3. 
 
 #import <UIKit/UIKit.h>
 
 typedef enum{
-    EYPhotoPickerModeBoth,
+    EYPhotoPickerModeAll,
+    EYPhotoPickerModeLocal,
     EYPhotoPickerModePhotoOnly,
     EYPhotoPickerModeImagesOnly
 }EYPhotoPickerMode;
@@ -43,6 +48,8 @@ typedef void (^__completionBlock)(UIImage* image);
 typedef void (^__failureBlock)(NSError* error);
 
 @interface EYPhotoPicker : NSObject<UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+    
+@private
     __completionBlock completionBlock;
     __failureBlock failureBlock;
     UIViewController *viewController;
@@ -50,10 +57,8 @@ typedef void (^__failureBlock)(NSError* error);
     EYPhotoPickerMode mode;
 }
 
-+ (id) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock;
-
-- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock;
-- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock;
-- (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock withMode:(EYPhotoPickerMode) mode;
++ (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock;
++ (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock;
++ (void) showFromView:(UIViewController*)aViewController completion:(__completionBlock) aCompletionBlock failure:(__failureBlock) aFailureBlock withMode:(EYPhotoPickerMode) mode;
 
 @end

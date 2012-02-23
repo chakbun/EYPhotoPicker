@@ -20,8 +20,8 @@
 }
 
 - (IBAction)selectImage:(id)sender {
-    selectPhoto = [[EYPhotoPicker alloc] init];
-    [selectPhoto showFromView:self completion:^(UIImage *image) {
+
+    [EYPhotoPicker showFromView:self completion:^(UIImage *image) {
         
         if (image != nil) {
             CGImageRef imageRef = [image CGImage];
